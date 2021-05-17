@@ -27,6 +27,12 @@ namespace carsales_mock_api
         public void ConfigureServices(IServiceCollection services)
         {
 
+        services.AddCors(o => o.AddPolicy("defaultPolicy", builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        }));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -43,6 +49,8 @@ namespace carsales_mock_api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "carsales_mock_api v1"));
             }
+
+            app.UseCors("defaultPolicy");
 
             app.UseHttpsRedirection();
 
