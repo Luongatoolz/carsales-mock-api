@@ -4,7 +4,7 @@
 ![security](https://github.com/Luongatoolz/carsales-mock-api/actions/workflows/codeql-analysis.yml/badge.svg)
 [![License:MIT](https://img.shields.io/github/license/Luongatoolz/carsales-mock-api?color=blue)](https://github.com/Luongatoolz/carsales-mock-api/blob/main/LICENSE)
 
-web api core 3.1
+web api .NET 5
 
 web api: https://carsalesmockapi.azurewebsites.net
 
