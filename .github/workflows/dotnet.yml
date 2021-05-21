@@ -1,4 +1,4 @@
-name: .NET Core Ci
+name: .NET 5 Ci
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet: [ '2.1.x', '3.1.x', '5.0.x' ]
+        dotnet: ['5.0.x']
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
