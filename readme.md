@@ -1,4 +1,8 @@
 # carsales-mock-api
+![node.js ci](https://github.com/Luongatoolz/carsales-mock-api/actions/workflows/dotnet.yml/badge.svg)
+![azure](https://github.com/Luongatoolz/carsales-mock-api/actions/workflows/azure.yml/badge.svg)
+[![License:MIT](https://img.shields.io/github/license/Luongatoolz/carsales-mock-api?color=blue)](https://github.com/Luongatoolz/carsales-mock-api/blob/main/LICENSE)
+
 web api core 3.1
 
 web api: https://carsalesmockapi.azurewebsites.net
