@@ -15,6 +15,8 @@
 #
 # For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
+
+name: .NET Core CI
 on:
   release:
     types: [created]
@@ -22,29 +24,33 @@ on:
 env:
   AZURE_WEBAPP_NAME: carsalesmockapi    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '10.x'                # set this to the node version to use
+  DOTNET_VERSION: '3.1.x'           # set this to the dot net version to use
 
 jobs:
-  build-and-deploy:
-    name: Build and Deploy
+  build:
     runs-on: ubuntu-latest
-    environment: production
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-    - name: npm install, build, and test
-      run: |
-        # Build and test the project, then
-        # deploy to Azure Web App.
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-    - name: 'Deploy to Azure WebApp'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      # Checkout the repo
+      - uses: actions/checkout@main
+      
+      # Setup .NET Core SDK
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }} 
+      
+      # Run dotnet build and publish
+      - name: dotnet build and publish
+        run: |
+          dotnet restore
+          dotnet build --configuration Release
+          dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}' 
+          
+      # Deploy to Azure Web apps
+      - name: 'Run Azure webapp deploy action using publish profile credentials'
+        uses: azure/webapps-deploy@v2
+        with: 
+          app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
+          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
