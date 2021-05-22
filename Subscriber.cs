@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace carsales_mock_api
+namespace CarsalesMockApi
 {
     public class Subscriber
     {

@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace carsales_mock_api
+namespace CarsalesMockApi
 {
     public class Startup
     {
@@ -47,7 +47,10 @@ namespace carsales_mock_api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "carsales_mock_api v1"));
+                app.UseSwaggerUI(c => {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "carsales mock api v1");
+                    c.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseCors("defaultPolicy");

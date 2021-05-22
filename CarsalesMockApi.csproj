@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>carsales_mock_api</RootNamespace>
+    <RootNamespace>CarsalesMockApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

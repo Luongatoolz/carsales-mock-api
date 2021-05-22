@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 
-namespace carsales_mock_api.Controllers
+namespace CarsalesMockApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
