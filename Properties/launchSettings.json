@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "carsales_mock_api": {
+    "CarsalesMockApi": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
